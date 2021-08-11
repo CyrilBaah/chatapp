@@ -8,9 +8,8 @@ app.use(express.json());
 
 exports.postSign = async (req, res) => {
     try {
-        
         const { username, email, password } = req.body;
-        console.log(username, email, password);
+        
         if (!(username && email && password)) {
             res.status(400).json("All input is required");
         }
@@ -35,7 +34,11 @@ exports.postSign = async (req, res) => {
             user.token = token;
 
             await user.save();
-
+            res.redirect('/chat');
+            // return res.render('chat/index', {
+            //     title: 'ChatApp | Chat page',
+            //     path: '/chat'
+            // });
             res.status(201).json({ success: true, message: user});
         }
         
