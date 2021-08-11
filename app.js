@@ -15,8 +15,12 @@ app.set('view engine', 'ejs');
 
 // Routes
 const indexRoutes = require('./routes/index');
+const authRoutes = require('./routes/auth');
+
 
 app.use(indexRoutes);
+app.use(authRoutes);
+
 
 
 
