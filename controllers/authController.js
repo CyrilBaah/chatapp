@@ -76,3 +76,17 @@ exports.postLogin = async (req, res) => {
     }
 };
 
+exports.getLogin = (req, res) => {
+    res.render('auth/login', {
+        title: 'ChatApp | Login',
+        path: '/login',
+    })
+};
+
+exports.getSignup = (req, res) => {
+    res.render('auth/signup', {
+        title: 'ChatApp | Signup',
+        path: '/signup',
+    })
+};
+

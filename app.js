@@ -16,10 +16,16 @@ app.set('view engine', 'ejs');
 // Routes
 const indexRoutes = require('./routes/index');
 const authRoutes = require('./routes/auth');
+const chatRoutes = require('./routes/chat');
+const friendRoutes = require('./routes/friend');
 
 
 app.use(indexRoutes);
 app.use(authRoutes);
+app.use(chatRoutes);
+app.use(chatRoutes);
+app.use(friendRoutes);
+
 
 
 
