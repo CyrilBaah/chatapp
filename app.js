@@ -6,12 +6,18 @@ const { sequelize } = require('./models')
 
 require('dotenv').config();
 
+app.set('views', path.join(__dirname, 'views'));
+app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.json());
 app.use(morgan('dev'));
+app.set('view engine', 'ejs');
 
-app.get('/', (req, res) => {
-    res.send('Chat App');
-})
+
+// Routes
+const indexRoutes = require('./routes/index');
+
+app.use(indexRoutes);
+
 
 
 const PORT = process.env.PORT;
