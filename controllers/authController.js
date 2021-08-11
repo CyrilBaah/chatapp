@@ -8,9 +8,9 @@ app.use(express.json());
 
 exports.postSign = async (req, res) => {
     try {
-        const { username, email, password } = req.body;
+        const { username, email, password, confirmPassword } = req.body;
         
-        if (!(username && email && password)) {
+        if (!(username && email && password, confirmPassword)) {
             res.status(400).json("All input is required");
         }
         const oldUser = await User.findOne({ where: { email } });
@@ -34,11 +34,7 @@ exports.postSign = async (req, res) => {
             user.token = token;
 
             await user.save();
-            res.redirect('/chat');
-            // return res.render('chat/index', {
-            //     title: 'ChatApp | Chat page',
-            //     path: '/chat'
-            // });
+            res.redirect('/login');
             res.status(201).json({ success: true, message: user});
         }
         
@@ -69,6 +65,10 @@ exports.postLogin = async (req, res) => {
             user.token = token;
             await user.save();
 
+            res.cookie('jwt',token, { httpOnly: true, maxAge: 3600000 });
+
+
+            res.redirect('/chat');
             res.status(200).json({ success: true, message: user });
         }
 
