@@ -14,12 +14,11 @@ app.use(express.urlencoded({ extended: false }));
 app.use(morgan('dev'));
 app.set('view engine', 'ejs');
 app.use(session({
-    secret: 'my secret',
+    secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: false
 }));
 app.use(cookieParser());
-
 
 // Routes
 const indexRoutes = require('./routes/index');
@@ -33,8 +32,6 @@ app.use(authRoutes);
 app.use(chatRoutes);
 app.use(chatRoutes);
 app.use(friendRoutes);
-
-
 
 
 
