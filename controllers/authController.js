@@ -67,6 +67,7 @@ exports.postLogin = async (req, res) => {
 
             res.cookie('jwt',token, { httpOnly: true, maxAge: 3600000 });
 
+            req.session.isLoggedIn = true;
 
             res.redirect('/chat');
             res.status(200).json({ success: true, message: user });
@@ -83,6 +84,7 @@ exports.getLogin = (req, res) => {
     res.render('auth/login', {
         title: 'ChatApp | Login',
         path: '/login',
+        isAuthenticated: req.isAuthenticated
     })
 };
 
@@ -90,6 +92,12 @@ exports.getSignup = (req, res) => {
     res.render('auth/signup', {
         title: 'ChatApp | Signup',
         path: '/signup',
+        isAuthenticated: req.isAuthenticated
     })
+};
+
+exports.getLogout = (req, res) => {
+    req.session.destroy();
+    res.redirect('/');
 };
 
