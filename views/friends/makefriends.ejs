@@ -3,7 +3,30 @@
 <body>
     <%- include('../includes/navigation.ejs') %>
 
-    <h1>👨 🙌👧👦 Make friends🙌👧👦 👨</h1>
+    <!-- <h1>👨 🙌👧👦 Make friends🙌👧👦 👨</h1> -->
+
+    <% if( users.length > 0) { %>
+    <div class="container">
+        <table class="w3-table">
+            <tr>
+                <th>UserName</th>
+                <th>Email</th>
+                <th>Action</th>
+            </tr>
+            <% for(let user of users)  { %>
+            <tr>
+                <td><%= user.username %></td>
+                <td><%= user.email %></td>
+                <td>
+                    <button class="btn" type="submit">Send a friend request</button>
+                </td>
+                <% } %>
+            <% } %>
+
+            </tr>
+        </table>
+    </div>
 
 </body>
+
 </html>

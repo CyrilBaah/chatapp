@@ -25,10 +25,11 @@ exports.getMakeFriends = async (req, res) => {
     users.forEach(user => {
         if(user.token === authToken){
             res.render('friends/makefriends', { 
-                title: 'ChatApp | Friend Requests',
+                title: 'ChatApp | Make Friends',
                 path: '/makefriends',
                 isAuthenticated: authToken,
-                username: user.username
+                username: user.username,
+                users: users
             });
         }
     }); 
