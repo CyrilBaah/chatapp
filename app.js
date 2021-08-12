@@ -5,6 +5,7 @@ const morgan = require('morgan');
 const { sequelize } = require('./models');
 const session = require('express-session');
 const cookieParser = require('cookie-parser')
+const flash = require('connect-flash');
 require('dotenv').config();
 
 app.set('views', path.join(__dirname, 'views'));
@@ -19,6 +20,7 @@ app.use(session({
     saveUninitialized: false
 }));
 app.use(cookieParser());
+app.use(flash());
 
 // Routes
 const indexRoutes = require('./routes/index');
