@@ -9,20 +9,17 @@ exports.getFriendRequests = async (req, res) => {
     const users = await User.findAll();
     const authToken = await req.cookies['jwt'];
     const pending = [];
+    let userId ;
+    const pendingRequest = [];
+
     users.forEach(user => {
         if(user.token === authToken){
             pending.push(user)
-        } 
+        };
     }); 
-    let a ;
-    for(let i of pending){
-        a = i;
-    }
-    const friendRequests = await Friendrequest.findAll({ where: { userTwo: a.id }, include : 'user' });
-    const b = [];
-    friendRequests.forEach(friendrequest => {
-        b.push(friendrequest['user'])
-    });
+    for(let i of pending){ userId = i };
+    const friendRequests = await Friendrequest.findAll({ where: { userTwo: userId.id }, include : 'user' });
+    friendRequests.forEach(friendrequest => { pendingRequest.push(friendrequest['user']) });
     users.forEach(user => {
         if(user.token === authToken){
             res.render('friends/friendrequests', { 
@@ -32,9 +29,9 @@ exports.getFriendRequests = async (req, res) => {
                 username: user.username,
                 users: users,
                 successMessage: req.flash('success'),
-                friendRequests: b
+                friendRequests: pendingRequest
             });
-        }
+        };
     }); 
    
 };
@@ -52,7 +49,7 @@ exports.getMakeFriends = async (req, res) => {
                 users: users,
                 successMessage: req.flash('success')
             });
-        }
+        };
     }); 
 };
 
@@ -73,11 +70,3 @@ exports.sendRequest = async (req, res) => {
     }); 
 };
 
-exports.test = async (req, res) => {
-    const friendRequests = await Friendrequest.findAll({ where: { userTwo: 3 }, include : 'user' });
-    const a = [];
-     friendRequests.forEach(friendrequest => {
-            a.push(friendrequest['user'])
-        })
-        res.json(a)
-}
