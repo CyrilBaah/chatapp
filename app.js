@@ -22,6 +22,7 @@ app.use(session({
 app.use(cookieParser());
 app.use(flash());
 
+
 // Routes
 const indexRoutes = require('./routes/index');
 const authRoutes = require('./routes/auth');

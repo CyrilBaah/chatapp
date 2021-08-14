@@ -3,7 +3,9 @@
 <body>
     <%- include('../includes/navigation.ejs') %>
 
-    <!-- <h1>👨 🙌👧👦 Make friends🙌👧👦 👨</h1> -->
+    <% if (successMessage) { %>
+        <div class="user-message user-message--success"><%= successMessage %></div>
+    <% } %>
 
     <% if( users.length > 0) { %>
     <div class="container">
@@ -18,12 +20,14 @@
                 <td><%= user.username %></td>
                 <td><%= user.email %></td>
                 <td>
-                    <button class="btn" type="submit">Send a friend request</button>
+                    <form action="/makefriends/<%= user.id %>" method="post">
+                        <button class="btn" type="submit">Send a friend request</button>
+                    </form>
                 </td>
-                <% } %>
-            <% } %>
-
             </tr>
+            <% } %>
+        <% } %>
+
         </table>
     </div>
 
