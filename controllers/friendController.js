@@ -6,8 +6,23 @@ const { User, Friendrequest } = require('../models');
 
 
 exports.getFriendRequests = async (req, res) => {
-    const authToken = await req.cookies['jwt'];
     const users = await User.findAll();
+    const authToken = await req.cookies['jwt'];
+    const pending = [];
+    users.forEach(user => {
+        if(user.token === authToken){
+            pending.push(user)
+        } 
+    }); 
+    let a ;
+    for(let i of pending){
+        a = i;
+    }
+    const friendRequests = await Friendrequest.findAll({ where: { userTwo: a.id }, include : 'user' });
+    const b = [];
+    friendRequests.forEach(friendrequest => {
+        b.push(friendrequest['user'])
+    });
     users.forEach(user => {
         if(user.token === authToken){
             res.render('friends/friendrequests', { 
@@ -16,7 +31,8 @@ exports.getFriendRequests = async (req, res) => {
                 isAuthenticated: authToken,
                 username: user.username,
                 users: users,
-                successMessage: req.flash('success')
+                successMessage: req.flash('success'),
+                friendRequests: b
             });
         }
     }); 
