@@ -2,7 +2,7 @@ const { request } = require('express');
 const express = require('express');
 const app = express();
 app.use(express.json());
-const { User, Friendrequest } = require('../models');
+const { User, Friendrequest, Friends } = require('../models');
 
 
 exports.getFriendRequests = async (req, res) => {
@@ -62,6 +62,7 @@ exports.getFriends = async (req, res) => {
                 path: '/friends',
                 isAuthenticated: authToken,
                 username: user.username,
+                successMessage: req.flash('success')
             });
         };
     }); 
@@ -79,8 +80,24 @@ exports.sendRequest = async (req, res) => {
                 userId: user.id
             });
         req.flash('success', 'Friend Request Sent Successfully');
-        res.redirect('/makefriends');
+        res.redirect('/friends');
         }
     }); 
 };
 
+exports.acceptRequest = async (req, res) => {
+    const authToken = await req.cookies['jwt'];
+    const users = await User.findAll();
+    users.forEach(user => {
+        if(user.token === authToken){
+            const { id } = req.params;
+            Friends.create({
+                userOne: user.id,
+                userTwo: id,
+                userId: user.id
+            });
+        req.flash('success', 'You just make a new friend');
+        res.redirect('/friends');
+        }
+    }); 
+}

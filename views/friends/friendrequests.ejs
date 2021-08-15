@@ -23,7 +23,7 @@
                     <td><%= request.username %></td>
                     <td><%= request.email %></td>
                     <td>
-                        <form action="" method="post">
+                        <form action="/accept-request/<%= request.id %>" method="post">
                             <button class="btn" type="submit">Accept Request</button>
                         </form>
                         <form action="" method="post">
