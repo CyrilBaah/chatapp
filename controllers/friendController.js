@@ -55,6 +55,23 @@ exports.getMakeFriends = async (req, res) => {
 exports.getFriends = async (req, res) => {
     const authToken = await req.cookies['jwt'];
     const users = await User.findAll();
+    const pending = [];
+    let userId;
+    const friendDetails = [];
+
+    users.forEach(user => {
+        if(user.token === authToken){
+            pending.push(user)
+        };
+    }); 
+
+    for(let i of pending){ userId = i };
+    const friends = await Friends.findAll({ where: { userTwo: userId.id }, include : 'user' });
+    friends.forEach(friend => {
+        friendDetails.push(friend['user']);
+    })
+    // res.json(friendDetails)
+
     users.forEach(user => {
         if(user.token === authToken){
             res.render('friends/friends', { 
@@ -62,7 +79,8 @@ exports.getFriends = async (req, res) => {
                 path: '/friends',
                 isAuthenticated: authToken,
                 username: user.username,
-                successMessage: req.flash('success')
+                successMessage: req.flash('success'),
+                friendDetails
             });
         };
     }); 
@@ -96,8 +114,14 @@ exports.acceptRequest = async (req, res) => {
                 userTwo: id,
                 userId: user.id
             });
-        req.flash('success', 'You just make a new friend');
+            Friends.create({
+                userOne: user.id,
+                userTwo: user.id,
+                userId: id
+            });
+        req.flash('success', 'You just made a new friend');
         res.redirect('/friends');
         }
     }); 
 }
+

@@ -8,7 +8,31 @@
 
     <h1>👨Friends List 👨</h1>
 
-
+    <% if( friendDetails.length > 0) { %>
+        <div class="container">
+            <table class="w3-table">
+                <tr>
+                    <th>UserName</th>
+                    <th>Email</th>
+                    <th>Action</th>
+                </tr>
+                <% for(let friend of friendDetails)  { %>
+                <tr>
+                    <td><%= friend.username %></td>
+                    <td><%= friend.email %></td>
+                    <td>
+                        <form action="/unfriend/<%= friend.id %>" method="post">
+                            <button class="btn" type="submit">Unfriend</button>
+                        </form>
+                    </td>
+                </tr>
+                <% } %>
+                
+                <% }  else {%>
+                    <h1>No Friend Request Yet!</h1>
+                <% } %>
+    
+            </table>
 
 
 </body>

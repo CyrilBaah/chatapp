@@ -10,5 +10,6 @@ router.get('/friends', auth, friendController.getFriends);
 router.post('/makefriends/:id',auth, friendController.sendRequest);
 router.post('/accept-request/:id',auth, friendController.acceptRequest);
 
+
 module.exports = router;
 
