@@ -1,0 +1,3 @@
+const ne = () => {
+    alert('works')
+}

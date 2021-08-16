@@ -126,3 +126,57 @@ exports.acceptRequest = async (req, res) => {
     }); 
 }
 
+exports.declineRequest = async (req, res) => {
+    const authToken = await req.cookies['jwt'];
+    const users = await User.findAll();
+    try {
+        const { id } = req.params;
+        const userId = Number(id);
+        const userDeclined = await Friendrequest.findOne({ where: { userId: userId } });
+        userDeclined.destroy(userId);
+        req.flash('success','You have successfuly declined a request');
+        res.redirect('/friends');
+    } catch (error) {
+        console.log(error);
+        res.json({ success: false, message: error })
+    }
+   
+
+    // const userDeclined = Friendrequest.FindOne({ where: { userId: id }});
+    // res.json(userDeclined)
+    // users.forEach(user => {
+    //     if(user.token === authToken){
+    //         declined.push(user)
+            // const { id } = req.body;
+            // const userDeclined = Friendrequest.FindOne({ where: { userId: 2 }});
+            // res.json(userDeclined)
+            // const { id } = req.params;
+            // userDeclined.destroy(id);
+            // try {
+            //     // const { id } = req.body.id;
+            //     const userDeclined = Friendrequest.findOne({ where: { userId: id } });
+            //     res.json(userDeclined);
+            //     // userDeclined.destroy();
+            //     // res.json(userDeclined.destroy(id));
+            //     req.flash('success', `User's request has been declined`);
+            //     res.redirect('/friends');
+            // } catch (error) {
+            //     console.log(error);
+            //     res.json({ success: false, message: error })
+            // }
+        // req.flash('success', `User's request has been declined`);
+        // res.redirect('/friends');
+    //     }
+    // }); 
+}
+
+exports.test = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const userDeclined = await Friendrequest.findOne({ where: { userId: id } });
+        res.json(userDeclined)
+    } catch (error) {
+        console.log(error);
+        res.json({ success: false, message: error })
+    }
+}
