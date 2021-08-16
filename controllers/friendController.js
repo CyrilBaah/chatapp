@@ -140,6 +140,20 @@ exports.declineRequest = async (req, res) => {
     }
 }
 
+exports.unFriend = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const userId = Number(id);
+        const unFriend = await Friends.findOne({ where: { userId: userId } });
+        unFriend.destroy(userId);
+        req.flash('success','You have successfully unfriend a user');
+        res.redirect('/makefriends');
+    } catch (error) {
+        console.log(error);
+        res.json({ success: false, message: error })
+    }
+}
+
 exports.test = async (req, res) => {
     try {
         const { id } = req.params;
