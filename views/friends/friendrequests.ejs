@@ -29,14 +29,6 @@
                         <form action="/decline-request/<%= request.id %>" method="post">
                             <button class="btn" type="submit" >Decline Request</button>
                         </form>
-                        <button class="toggle" onclick="ne()"></button>
-
-                        <!-- enctype must be set to the type you will parse before methodOverride() -->
-                <!-- <form method="POST" action="/decline-request/<%= request.id %>" enctype="application/x-www-form-urlencoded">
-                    <input type="hidden" name="_method" value="DELETE">
-                    <button type="submit">Delete resource</button>
-                </form>
-   -->
                     </td>
                 </tr>
                 <% } %>

@@ -1,3 +1,0 @@
-const ne = () => {
-    alert('works')
-}
