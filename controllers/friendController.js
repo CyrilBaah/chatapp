@@ -153,14 +153,3 @@ exports.unFriend = async (req, res) => {
         res.json({ success: false, message: error })
     }
 }
-
-exports.test = async (req, res) => {
-    try {
-        const { id } = req.params;
-        const userDeclined = await Friendrequest.findOne({ where: { userId: id } });
-        res.json(userDeclined)
-    } catch (error) {
-        console.log(error);
-        res.json({ success: false, message: error })
-    }
-}

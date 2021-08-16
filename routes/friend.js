@@ -12,8 +12,5 @@ router.post('/accept-request/:id',auth, friendController.acceptRequest);
 router.post('/decline-request/:id',auth, friendController.declineRequest);
 router.post('/unfriend/:id',auth, friendController.unFriend);
 
-router.delete('/test/:id', friendController.test);
-
-
 module.exports = router;
 
