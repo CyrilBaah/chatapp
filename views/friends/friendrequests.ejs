@@ -1,20 +1,12 @@
 <%- include('../includes/head.ejs') %>
-
 <%- include('../includes/navigation.ejs') %>
+
 <body>
     <div class="container">
-    <% if (successMessage) { %>
+        <% if (successMessage) { %>
         <div class="user-message user-message--success"><%= successMessage %></div>
-    <% } %>
-
-    <h1>👨Friend Requests 👨</h1>
-
-
-    <h3>Testing</h3>
-
-    
-
-    <% if( friendRequests.length > 0) { %>
+        <% } %>
+        <% if( friendRequests.length > 0) { %>
         <div class="container">
             <table class="w3-table">
                 <tr>
@@ -31,22 +23,19 @@
                             <button class="btn" type="submit">Accept Request</button>
                         </form>
                         <form action="/decline-request/<%= request.id %>" method="post">
-                            <button class="btn" type="submit" >Decline Request</button>
+                            <button class="btn btn-danger" type="submit">Decline Request</button>
                         </form>
                     </td>
                 </tr>
                 <% } %>
-                
                 <% }  else {%>
-                    <h1>No Friend Request Yet!</h1>
+                <h1>No Friend Request Yet!</h1>
                 <% } %>
-    
             </table>
+        </div>
     </div>
-            <%- include('../includes/footer.ejs') %>
+        <%- include('../includes/footer.ejs') %>
+        <script src="main.js"></script>
+    </body>
 
-
-            <script src="main.js"></script>
-            <!-- <script type="text/javascript" src="/public/js/main.js"></script> -->
-</body>
 </html>

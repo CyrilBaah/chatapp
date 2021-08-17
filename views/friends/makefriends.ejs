@@ -1,13 +1,11 @@
 <%- include('../includes/head.ejs') %>
-
 <%- include('../includes/navigation.ejs') %>
-<body>
 
+<body>
     <div class="container">
         <% if (successMessage) { %>
-            <div class="user-message user-message--success"><%= successMessage %></div>
+        <div class="user-message user-message--success"><%= successMessage %></div>
         <% } %>
-    
         <% if( users.length > 0) { %>
         <div class="container">
             <table class="w3-table">
@@ -27,12 +25,10 @@
                     </td>
                 </tr>
                 <% } %>
-            <% } %>
-    
+                <% } %>
             </table>
         </div>
     </div>
-
     <%- include('../includes/footer.ejs') %>
 </body>
 

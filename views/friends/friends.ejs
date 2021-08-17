@@ -1,5 +1,4 @@
 <%- include('../includes/head.ejs') %>
-
 <%- include('../includes/navigation.ejs') %>
 
 <body>
@@ -7,9 +6,6 @@
         <% if (successMessage) { %>
         <div class="user-message user-message--success"><%= successMessage %></div>
         <% } %>
-
-        <h1>👨Friends List 👨</h1>
-
         <% if( friendDetails.length > 0) { %>
         <div class="container">
             <table class="w3-table">
@@ -24,7 +20,7 @@
                     <td><%= friend.email %></td>
                     <td>
                         <form action="/unfriend/<%= friend.id %>" method="post">
-                            <button class="btn" type="submit">Unfriend</button>
+                            <button class="btn btn-danger" type="submit">Unfriend</button>
                         </form>
                     </td>
                 </tr>
@@ -33,12 +29,11 @@
                 <% }  else {%>
                 <h1>You have no friends yet!</h1>
                 <% } %>
-
             </table>
         </div>
-
-
-        <%- include('../includes/footer.ejs') %>
+        
+    </div>
+    <%- include('../includes/footer.ejs') %>
 </body>
 
 </html>
