@@ -1,11 +1,15 @@
 # Chat Application
 This a simple web application made with Express, Node.js, socket.io, Postgres
 
+## Symbol Meaning
+❌ - Incomplete
+✔️ - Complete
 ## Features / Requirements
-1. Should be able to signup & login with an email and password. 
-2. Should be able to send and accept friend.
-3. Should be able to unfriend.
-4. Should be able to send text messages and one file per message to friends.
+1. Should be able to signup & login with an email and password. ✔️
+2. Should be able to send and accept friend. ✔️
+3. Should be able to unfriend.✔️
+4. Should be able to send text messages and one file per message to friends. ❌
+
 
 ## How to set up locally
 
