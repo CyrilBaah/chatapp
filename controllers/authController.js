@@ -72,7 +72,7 @@ exports.postLogin = async (req, res) => {
 
             req.session.isLoggedIn = true;
 
-            res.redirect('/chat');
+            res.redirect('/chats');
         }
 
         req.flash('error', 'Invalid Credentials');
