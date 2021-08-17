@@ -4,6 +4,10 @@
   box-sizing: border-box;
 }
 
+.container {
+    padding: 0.5em 5em 0.5em 5em;
+}
+
 body {
   padding: 0;
   margin: 0;
@@ -235,3 +239,17 @@ display: block;
   margin-left: 5rem;
   padding-top: 2rem;
 }
+
+.footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background-color: #00695c;
+  color: white;
+  text-align: center;
+}
+
+.footer a {
+  text-decoration: none;
+  color: rgb(43, 226, 202);
+} 

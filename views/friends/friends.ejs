@@ -1,14 +1,16 @@
 <%- include('../includes/head.ejs') %>
 
+<%- include('../includes/navigation.ejs') %>
+
 <body>
-    <%- include('../includes/navigation.ejs') %>
-    <% if (successMessage) { %>
+    <div class="container">
+        <% if (successMessage) { %>
         <div class="user-message user-message--success"><%= successMessage %></div>
-    <% } %>
+        <% } %>
 
-    <h1>👨Friends List 👨</h1>
+        <h1>👨Friends List 👨</h1>
 
-    <% if( friendDetails.length > 0) { %>
+        <% if( friendDetails.length > 0) { %>
         <div class="container">
             <table class="w3-table">
                 <tr>
@@ -27,14 +29,16 @@
                     </td>
                 </tr>
                 <% } %>
-                
+
                 <% }  else {%>
-                    <h1>You have no friends yet!</h1>
+                <h1>You have no friends yet!</h1>
                 <% } %>
-    
+
             </table>
+        </div>
 
 
+        <%- include('../includes/footer.ejs') %>
 </body>
 
 </html>
