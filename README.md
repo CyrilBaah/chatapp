@@ -16,7 +16,14 @@ This a simple web application made with Express, Node.js, socket.io, Postgres
 1. Clone the project.
 2. Change the file in config/config.example.json to config/config.json. [DB set-up: Postrgres].
 3. Change the example.env file to .env .
-4. Install
+4. Run 
 ```sh
 $ npm install 
 ```
+5. Run
+```sh
+$ sequelize db:migrate
+```
+
+## Heroku Deployment Link
+[![Deploy to Heroku](https://www.herokucdn.com/deploy/button.svg)](https://capstone-chatapp.herokuapp.com)
