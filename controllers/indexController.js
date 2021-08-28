@@ -4,9 +4,11 @@ app.use(express.json());
 
 
 exports.getIndex = async (req, res) => {
-    res.render('index', { 
+    res.render('auth/signup', { 
         title: 'ChatApp | Home page',
         path: '/',
-        isAuthenticated: req.isAuthenticated
+        isAuthenticated: req.isAuthenticated,
+        errorMessage: req.flash('error'),
+        successMessage: req.flash('success')
     });
 } ;
