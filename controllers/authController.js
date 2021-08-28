@@ -14,6 +14,11 @@ exports.postSign = async (req, res) => {
             req.flash('error', 'All input fields are required');
             res.redirect('/signup');
         }
+        if (password !== confirmPassword) {
+            req.flash('error',  `Password doesn't match`);
+            res.redirect('/signup');
+            res.exit(0);
+        }
         const oldUser = await User.findOne({ where: { email } });
         if (oldUser) {
             req.flash('error', 'User Already Exist. Please Login');
@@ -104,6 +109,5 @@ exports.getSignup = (req, res) => {
 
 exports.getLogout = (req, res) => {
     req.session.destroy();
-    res.redirect('/');
 };
 
