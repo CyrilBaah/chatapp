@@ -109,5 +109,6 @@ exports.getSignup = (req, res) => {
 
 exports.getLogout = (req, res) => {
     req.session.destroy();
+    res.redirect('/login');
 };
 
