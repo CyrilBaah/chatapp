@@ -77,7 +77,7 @@ exports.postLogin = async (req, res) => {
 
             req.session.isLoggedIn = true;
 
-            res.redirect('/chats');
+            res.redirect('/makefriends');
         }
 
         req.flash('error', 'Invalid Credentials');
